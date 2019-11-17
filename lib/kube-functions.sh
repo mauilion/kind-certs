@@ -66,3 +66,5 @@ cat "$KUBECONFIG"
 export KUBECONFIG=$OLD_KUBECONFIG
 }
 
+# Allows to call a function based on arguments passed to the script
+$*

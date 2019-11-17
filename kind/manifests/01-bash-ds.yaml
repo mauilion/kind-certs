@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  labels:
+    app: bash
+  name: bash
+spec:
+  selector:
+    matchLabels:
+      app: bash
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: bash
+    spec:
+      containers:
+      - image: bash:5
+        imagePullPolicy: IfNotPresent
+        name: bash
+        command: ["bash", "/script/uptime.sh"]
+        volumeMounts:
+        - mountPath: /script/
+          name: uptime
+      dnsPolicy: ClusterFirst
+      tolerations:
+      - effect: NoSchedule
+        operator: Exists
+      dnsPolicy: ClusterFirst
+      volumes:
+        - name: uptime
+          configMap:
+            name: time-script
+

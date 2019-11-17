@@ -1,0 +1,16 @@
+apiVersion: v1
+data:
+  uptime.sh: |
+    #!/usr/bin/env bash
+    begin=$(date +%s)
+    while true ; do
+      seconds=$(date +%s)
+      echo "$(hostname) boot time: $(date --date @$begin): uptime $(( ${seconds} - ${begin})) seconds"
+      sleep 1
+    done
+
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: time-script
+  selfLink: /api/v1/namespaces/default/configmaps/time-script
