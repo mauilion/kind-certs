@@ -70,4 +70,4 @@ clean_k8s:
 	kind delete cluster --name=$(CLUSTER_NAME) || exit 0
 
 clean_all: clean_k8s
-	rm .kube/*
+	rm .kube/kubeconfig*
